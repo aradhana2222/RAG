@@ -22,6 +22,7 @@ def word_embeddings():
     # - min_count=1: Ignores all words with total frequency lower than this
     # - workers=4: Number of CPU cores to use for training
     print("Word Embedding for 'cat':", model.wv['cat'])
+    print("Word Embedding for 'dog':", model.wv['dog'])
 
 # Sentence Embeddings
 def sentence_embeddings():

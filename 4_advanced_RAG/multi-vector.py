@@ -35,6 +35,7 @@ def fetch_html(url):
     try:
         response = requests.get(url, headers=headers)
         response.raise_for_status()
+        response.encoding = 'utf-8'  # Force UTF-8 encoding
         return response.text
     except requests.RequestException as e:
         print(f"Error fetching the website: {e}")
@@ -45,8 +46,10 @@ def process_website(url):
     if not html_content:
         raise ValueError("No content could be fetched from the website.")
     
-    with tempfile.NamedTemporaryFile(mode='w', delete=False, suffix='.html') as temp_file:
-        temp_file.write(html_content)
+    cleaned_text = html_content.encode('utf-8', errors='ignore').decode('utf-8')
+    
+    with tempfile.NamedTemporaryFile(mode='w', delete=False, suffix='.html', encoding='utf-8') as temp_file:
+        temp_file.write(cleaned_text)
         temp_file_path = temp_file.name
 
     try:

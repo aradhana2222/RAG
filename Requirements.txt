@@ -88,7 +88,6 @@ pdfplumber
 pillow
 pinecone
 pinecone-plugin-inference
-pinecone-plugin-interface
 platformdirs
 pooch
 protobuf

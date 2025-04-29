@@ -2,7 +2,8 @@ import os
 import requests
 from bs4 import BeautifulSoup
 from langchain.text_splitter import CharacterTextSplitter
-from langchain_anthropic import ChatAnthropic, AnthropicEmbeddings
+from langchain_anthropic import ChatAnthropic
+from langchain_community.embeddings import AnthropicEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain.chains import RetrievalQA
 from langchain.prompts import PromptTemplate

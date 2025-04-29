@@ -1,13 +1,21 @@
-from pinecone import Pinecone, ServerlessSpec
+from pinecone import Pinecone
+from pinecone import ServerlessSpec
 from sentence_transformers import SentenceTransformer
 import os
 from dotenv import load_dotenv
-
 load_dotenv()
 
 try:
-    # Initialize Pinecone
-    pc = Pinecone(api_key=os.environ['PINECONE_API_KEY'])
+    # initialize the pinecore api key
+    PINECONE_API_KEY = os.environ.get("PINECONE_API_KEY")
+    if not PINECONE_API_KEY:
+        PINECONE_API_KEY = input("Please enter your PINECONE API key: ")
+        os.environ["PINECONE_API_KEY"] = PINECONE_API_KEY
+        pc = Pinecone(api_key=os.environ['PINECONE_API_KEY'])
+
+    # initialize the pinecore api key
+    # pc = Pinecone(api_key= 'pcsk_27UvEa_PHyZ3n7E6euuUHXg7CPCjSb7HmEDe8j1XqzqmHLZHgpswygWhAHu7weNmuqWDrT')
+
     print("Pinecone initialized successfully.")
 
     # Load a pre-trained model
@@ -30,7 +38,7 @@ try:
     print(f"Vector dimension: {dimension}")
 
     # Define index name
-    index_name = "ragudemy"
+    index_name = "firstPineconeIndex"
 
     # Check if index already exists
     existing_indexes = pc.list_indexes()
